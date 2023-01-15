@@ -90,23 +90,20 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  let passwordlength = parseFloat(prompt("Please choose a password length between 10 - 64"));
-  
-  while (!(passwordlength >= 10 && passwordlength <= 64)) {
-  alert("Invalid input. Password length must be a number between 10-64.");
-  passwordlength = parseFloat(prompt("Please choose a password length between 10 - 64"));
+  let passwordlength = prompt("Please choose a password length between 10 - 64");
+  while (!/^\d+$/.test(passwordlength) || !(passwordlength >= 10 && passwordlength <= 64)) {
+    alert("Invalid input. Please enter one number between 10-64.");
+    passwordlength = prompt("Please choose a password length between 10 - 64");
   }
-
-  if (!Number.isInteger(passwordlength)) {
-  alert("Please enter a whole number");
-  return getPasswordOptions();
-  }
+  // Use parseFloat to convert string to number
+  passwordlength = parseFloat(passwordlength);
 
   let numbers = confirm("Choose OK if you want to include Numbers")
   let uppercase = confirm("Choose OK if you want to include Uppercase Letters")
   let lowercase = confirm("Choose OK if you want to include Lowercase Letters")
   let special = confirm("Choose OK if you want to include Special Characters")
   
+  // An alert for user to choose at least 1 option, if cancel is chosen on
   if (!numbers && !uppercase && !lowercase && !special) {
   alert("You must choose at least one option")
   return getPasswordOptions()
@@ -118,47 +115,45 @@ function getPasswordOptions() {
     lowercase,
     special
     }
-  }
-  
-  
-  
-  
-  
-
+}
 
 
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-  let index = Math.floor(Math.random() * arr.length);
-  let element = arr[index];
-  return element;
+  let arrayIndex = Math.floor(Math.random() * arr.length);
+  let arrayElement = arr[arrayIndex];
+  return arrayElement;
 }
-
-
-
 
 
 // Function to generate password with user input
 function generatePassword() {
   let randomPassword = "";
-  let usersChoices = getPasswordOptions();
-while (randomPassword.length < usersChoices.passwordlength) {
-if (usersChoices.numbers) {
-  randomPassword += getRandom(numericCharacters);
+  let chosenOptions = getPasswordOptions();
+  let i = 0;
+
+  while (i < chosenOptions.passwordlength) {
+    if (chosenOptions.numbers && i < chosenOptions.passwordlength) {
+      randomPassword += getRandom(numericCharacters);
+      i++;
     }
-if (usersChoices.uppercase) {
-  randomPassword += getRandom(upperCasedCharacters);
+    if (chosenOptions.uppercase && i < chosenOptions.passwordlength) {
+      randomPassword += getRandom(upperCasedCharacters);
+      i++;
     }
-if (usersChoices.lowercase) {
-  randomPassword += getRandom(lowerCasedCharacters);
+    if (chosenOptions.lowercase && i < chosenOptions.passwordlength) {
+      randomPassword += getRandom(lowerCasedCharacters);
+      i++;
     }
-if (usersChoices.special) {
-  randomPassword += getRandom(specialCharacters);
+    if (chosenOptions.special && i < chosenOptions.passwordlength) {
+      randomPassword += getRandom(specialCharacters);
+      i++;
     }
   }
   return randomPassword;
 }
+
 
 
 // Get references to the #generate element
