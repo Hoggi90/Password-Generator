@@ -90,12 +90,17 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
+  alert("Choose the length and options for your random password");
   let passwordlength = prompt("Please choose a password length between 10 - 64");
+    if (passwordlength === null) {
+      return getPasswordOptions();
+    }
+// Checks if the password length is between 10-64 and an integer
   while (!/^\d+$/.test(passwordlength) || !(passwordlength >= 10 && passwordlength <= 64)) {
     alert("Invalid input. Please enter one number between 10-64.");
     passwordlength = prompt("Please choose a password length between 10 - 64");
   }
-  // Use parseFloat to convert string to number
+// Use parseFloat to convert string to number
   passwordlength = parseFloat(passwordlength);
 
   let numbers = confirm("Choose OK if you want to include Numbers")
@@ -103,26 +108,22 @@ function getPasswordOptions() {
   let lowercase = confirm("Choose OK if you want to include Lowercase Letters")
   let special = confirm("Choose OK if you want to include Special Characters")
   
-  // An alert for user to choose at least 1 option, if cancel is chosen on
+// An alert for user to choose at least 1 option, if cancel is chosen on
   if (!numbers && !uppercase && !lowercase && !special) {
   alert("You must choose at least one option")
   return getPasswordOptions()
   }
+
   return {
-    passwordlength,
-    numbers,
-    uppercase,
-    lowercase,
-    special
-    }
+    passwordlength, numbers, uppercase, lowercase, special}
 }
 
 
 
 // Function for getting a random element from an array
-function getRandom(arr) {
-  let arrayIndex = Math.floor(Math.random() * arr.length);
-  let arrayElement = arr[arrayIndex];
+function getRandom(random) {
+  let arrayIndex = Math.floor(Math.random() * random.length);
+  let arrayElement = random[arrayIndex];
   return arrayElement;
 }
 
@@ -132,8 +133,10 @@ function generatePassword() {
   let randomPassword = "";
   let chosenOptions = getPasswordOptions();
   let i = 0;
-
+// While loop will continously run until desired length is reached
   while (i < chosenOptions.passwordlength) {
+// These if statements check if each option has been selected or not
+// If true, it will add a random character and the length will increase by 1
     if (chosenOptions.numbers && i < chosenOptions.passwordlength) {
       randomPassword += getRandom(numericCharacters);
       i++;
