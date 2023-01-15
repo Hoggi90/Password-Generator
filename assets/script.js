@@ -90,10 +90,10 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  alert("Choose the length and options for your random password");
   let passwordlength = prompt("Please choose a password length between 10 - 64");
+// If cancel is pressed, returns to webpage
     if (passwordlength === null) {
-      return getPasswordOptions();
+      return;
     }
 // Checks if the password length is between 10-64 and an integer
   while (!/^\d+$/.test(passwordlength) || !(passwordlength >= 10 && passwordlength <= 64)) {
@@ -115,7 +115,8 @@ function getPasswordOptions() {
   }
 
   return {
-    passwordlength, numbers, uppercase, lowercase, special}
+    passwordlength, numbers, uppercase, lowercase, special 
+  }
 }
 
 
