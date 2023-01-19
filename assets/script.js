@@ -88,7 +88,7 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-// Function to prompt user for password options
+// Function to prompt user for password options.
 function getPasswordOptions() {
   let passwordlength = prompt("Choose a password length between 10 - 64");
 // If cancel is pressed, returns to webpage
@@ -96,7 +96,7 @@ if (passwordlength === null) {
   passwordlength = "";
   return passwordlength;
 }
-// Checks if the password length is between 10-64 and an integer
+// Checks if the password length is between 10-64 and an integer.
   while (!/^(?!^0)\d+$/.test(passwordlength) || !(passwordlength >= 10 && passwordlength <= 64)) {
     alert("INVALID! Choose a number between 10-64.");
     return getPasswordOptions();
