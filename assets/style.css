@@ -17,8 +17,9 @@ body {
   background-color: #a3c9ee;
 }
 
-h1, h3 {
-  color:white;
+h1,
+h3 {
+  color: white;
   text-align: center;
 }
 
@@ -88,8 +89,7 @@ header {
   border: none;
   background-color: rgb(76, 197, 237);
   border-radius: 25px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
-    0px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px 0px;
   color: hsl(0, 0%, 100%);
   display: inline-block;
   font-size: 22px;
@@ -98,12 +98,12 @@ header {
   padding: 14px 34px;
   text-align: center;
   cursor: pointer;
-  
+
 }
 
 .btn:hover {
-    background-color: rgb(25, 168, 215);
-    box-shadow: rgb(94, 92, 92) 0px 5px 8px 0px;
+  background-color: rgb(25, 168, 215);
+  box-shadow: rgb(94, 92, 92) 0px 5px 8px 0px;
 
 }
 
