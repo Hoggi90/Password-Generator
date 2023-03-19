@@ -13,6 +13,10 @@
 
 ### Right-click on the browser and choose inspect, then click on console to view the JS script.
 
+# Contribution
+
+## There is currently no option for contribution
+
 # Screenshots
 
 ![Screenshot](/assets/images/screenshot.png)
