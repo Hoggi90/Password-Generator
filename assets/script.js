@@ -91,29 +91,29 @@ var upperCasedCharacters = [
 // Function to prompt user for password options.
 function getPasswordOptions() {
   let passwordlength = prompt("Choose a password length between 10 - 64");
-// If cancel is pressed, returns to webpage
-if (passwordlength === null) {
-  passwordlength = "";
-  return passwordlength;
-}
-// Checks if the password length is between 10-64 and an integer.
+  // If cancel is pressed, returns to webpage
+  if (passwordlength === null) {
+    passwordlength = "";
+    return passwordlength;
+  }
+  // Checks if the password length is between 10-64 and an integer.
   while (!/^(?!^0)\d+$/.test(passwordlength) || !(passwordlength >= 10 && passwordlength <= 64)) {
     alert("INVALID! Choose a number between 10-64.");
     return getPasswordOptions();
   }
-
+  // These are alerts messages to show which options you would like to use.
   let numbers = confirm("Choose OK if you want to include Numbers")
   let uppercase = confirm("Choose OK if you want to include Uppercase Letters")
   let lowercase = confirm("Choose OK if you want to include Lowercase Letters")
   let special = confirm("Choose OK if you want to include Special Characters")
-  
-// An alert for user to choose at least 1 option, if cancel is chosen on all options
+
+  // An alert for user to choose at least 1 option, if cancel is chosen on all options
   if (!numbers && !uppercase && !lowercase && !special) {
-  alert("You must choose at least one option")
-  return getPasswordOptions()
+    alert("You must choose at least one option")
+    return getPasswordOptions()
   }
   return {
-    passwordlength, numbers, uppercase, lowercase, special 
+    passwordlength, numbers, uppercase, lowercase, special
   }
 }
 
@@ -129,15 +129,15 @@ function getRandom(random) {
 
 // Function to generate password with user input
 function generatePassword() {
-// Created empty string to store the password
-// Stored the function into the variable
+  // Created empty string to store the password
+  // Stored the function into the variable
   let randomPassword = "";
   let passwordOptions = getPasswordOptions();
   let i = 0;
-// While loop will continously run until desired length is reached
+  // While loop will continously run until desired length is reached
   while (i < passwordOptions.passwordlength) {
-// These if statements check if each option has been selected or not
-// If true, it will add a random character from each array and the length will increase by 1
+    // These if statements check if each option has been selected or not
+    // If true, it will add a random character from each array and the length will increase by 1
     if (passwordOptions.numbers && i < passwordOptions.passwordlength) {
       randomPassword += getRandom(numericCharacters);
       i++;
@@ -170,7 +170,7 @@ var generateBtn = document.querySelector('#generate');
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
-
+  // assigning the value tot he variable password
   passwordText.value = password;
 }
 
